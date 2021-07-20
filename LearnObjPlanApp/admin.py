@@ -1,3 +1,8 @@
 from django.contrib import admin
 
-# Register your models here.
+from .models import Course, Origin, ContentArea, Objective
+
+admin.site.register(Course)
+admin.site.register(Origin)
+admin.site.register(ContentArea)
+admin.site.register(Objective)
