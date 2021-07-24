@@ -49,8 +49,10 @@ class ContentArea(models.Model):
 class Objective(models.Model):
     objective_text = models.TextField()
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
-    parent = models.ForeignKey('self', on_delete=models.CASCADE, blank=True,
-                               null=True, help_text=parent_help)
+    parent = models.ManyToManyField('self',
+                                    blank=True,
+                                    help_text=parent_help,
+                                    symmetrical=False)
     origin = models.ForeignKey(Origin, on_delete=models.CASCADE, blank=True,
                                null=True, help_text=origin_help)
     origin_number = models.CharField(max_length=200, blank=True,
