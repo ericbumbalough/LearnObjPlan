@@ -12,8 +12,10 @@ origin_url_help = 'Webpage where the origin is found.'
 origin_number_help = ('The number for objective from the origin. '
                       + 'Leave blank if there is no origin or the origin does '
                       + 'not list a number.')
-parent_help = ('Is this requirement devirived from a different requirement? If'
-               + 'so, put that requirement here. If not, leave blank.')
+parents_help = ('Is this requirement devirived different requirements?'
+                + ' If so, put that requirement here. If not, leave blank.')
+children_help = ('Are other requirements derived from this one? '
+                 + 'If so, put them here. If not, leave blank')
 
 
 class Course(models.Model):
@@ -38,7 +40,7 @@ class ContentArea(models.Model):
     description = models.TextField()
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
     parent = models.ForeignKey('self', on_delete=models.CASCADE, blank=True,
-                               null=True, help_text=parent_help)
+                               null=True, help_text=parents_help)
     origin = models.ForeignKey(Origin, on_delete=models.CASCADE, blank=True,
                                null=True, help_text=origin_help)
 
@@ -49,8 +51,16 @@ class ContentArea(models.Model):
 class Objective(models.Model):
     objective_text = models.TextField()
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
-    parent = models.ForeignKey('self', on_delete=models.CASCADE, blank=True,
-                               null=True, help_text=parent_help)
+    parents = models.ManyToManyField('self',
+                                     blank=True,
+                                     help_text=parents_help,
+                                     symmetrical=False,
+                                     related_name='parents_related')
+    children = models.ManyToManyField('self',
+                                      blank=True,
+                                      help_text=children_help,
+                                      symmetrical=False,
+                                      related_name='children_related')
     origin = models.ForeignKey(Origin, on_delete=models.CASCADE, blank=True,
                                null=True, help_text=origin_help)
     origin_number = models.CharField(max_length=200, blank=True,
