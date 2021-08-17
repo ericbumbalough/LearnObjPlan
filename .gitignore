@@ -1,2 +1,5 @@
 # .gitignore
 .env
+*.pyc
+*.cfg
+venv/
