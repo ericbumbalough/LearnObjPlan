@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Objectives</h1>
+
+  {% if objective_list %}
+  <ul>
+    {% for obj in objective_list %}
+      <li>
+        {{ obj.objective }}
+      </li>
+    {% endfor %}
+  </ul>
+  {% else %}
+    <p>You haven't created any objectives.</p>
+  {% endif %}
+{% endblock %}
