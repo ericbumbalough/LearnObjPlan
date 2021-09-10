@@ -1,8 +1,8 @@
 from django.contrib import admin
+from django.contrib.auth.admin import UserAdmin
+from .models import Assessment, Learning_Activity, Objective, Course
 
-from .models import Course, Origin, ContentArea, Objective
-
-admin.site.register(Course)
-admin.site.register(Origin)
-admin.site.register(ContentArea)
 admin.site.register(Objective)
+admin.site.register(Assessment)
+admin.site.register(Learning_Activity)
+admin.site.register(Course)
