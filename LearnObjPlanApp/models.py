@@ -27,9 +27,9 @@ class Course(models.Model):
 class Learning_Activity(models.Model):
     learning_activity = models.CharField(max_length=100)
     course = models.ForeignKey(Course, on_delete=CASCADE)
+    user = models.ForeignKey(User, on_delete=CASCADE)
     descripton = models.TextField(blank=True)
-    user = models.ForeignKey(User, on_delete=CASCADE) 
-    
+        
     def __str__(self):
         return self.learning_activity
     
@@ -37,8 +37,8 @@ class Learning_Activity(models.Model):
 class Assessment(models.Model):
     assessment = models.CharField(max_length=100)
     course = models.ForeignKey(Course, on_delete=CASCADE)
-    descripton = models.TextField(blank=True) 
     user = models.ForeignKey(User, on_delete=CASCADE)
+    descripton = models.TextField(blank=True) 
     
     def __str__(self):
         return self.assessment
@@ -47,6 +47,7 @@ class Assessment(models.Model):
 class Objective(models.Model):
     objective = models.CharField(max_length=100)
     course = models.ForeignKey(Course, on_delete=CASCADE)
+    user = models.ForeignKey(User, on_delete=CASCADE)
     parents = models.ManyToManyField('self',
                                      blank=True,
                                      help_text=parents_help,
@@ -66,8 +67,7 @@ class Objective(models.Model):
                                             blank=True,
                                             null=True)
     notes = models.TextField(blank=True)
-    user = models.ForeignKey(User, on_delete=CASCADE)
-    
+        
     def __str__(self):
         return self.objective
     
