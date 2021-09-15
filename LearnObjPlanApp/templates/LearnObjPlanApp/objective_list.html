@@ -5,11 +5,11 @@
 
   {% if objective_list %}
   <ul>
-    {% for obj in objective_list %}
-      <li>
-        {{ obj.objective }}
-      </li>
-    {% endfor %}
+      {% for obj in objective_list %}
+        <li>
+          {% include './objective.html' with objective=obj %}
+        </li>
+      {% endfor %}
   </ul>
   {% else %}
     <p>You haven't created any objectives.</p>

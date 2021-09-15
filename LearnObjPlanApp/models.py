@@ -48,16 +48,16 @@ class Objective(models.Model):
     objective = models.CharField(max_length=100)
     course = models.ForeignKey(Course, on_delete=CASCADE)
     user = models.ForeignKey(User, on_delete=CASCADE)
-    parents = models.ManyToManyField('self',
-                                     blank=True,
-                                     help_text=parents_help,
-                                     symmetrical=False,
-                                     related_name='parents_related')
-    # children = models.ManyToManyField('self',
-    #                                   blank=True,
-    #                                   help_text=children_help,
-    #                                   symmetrical=False,
-    #                                   related_name='children_related')
+    # parents = models.ManyToManyField('self',
+    #                                  blank=True,
+    #                                  help_text=parents_help,
+    #                                  symmetrical=False,
+    #                                  related_name='parents_related')
+    children = models.ManyToManyField('self',
+                                      blank=True,
+                                      help_text=children_help,
+                                      symmetrical=False,
+                                      related_name='children_related')
     assessments = models.ForeignKey(Assessment,
                                     on_delete=models.CASCADE,
                                     blank=True,

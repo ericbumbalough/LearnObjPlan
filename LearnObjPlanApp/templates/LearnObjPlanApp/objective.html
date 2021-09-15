@@ -1,0 +1,11 @@
+{{objective.objective}}
+{% if objective.children %}
+    {% for child in objective.children.all %}
+        <ul>
+            <li>
+                {# This had to be an absolute path to get around a Django recursion exception #}
+                {% include 'LearnObjPlanApp/objective.html' with objective=child %}
+            </li>
+        </ul>
+    {% endfor %}
+{% endif %}
