@@ -1,0 +1,12 @@
+{% if assessments%}
+    <div class="assessment">
+        <b>Assessments</b>
+        <ul>
+            {% for a in assessments %}
+                <li>
+                    {{a.assessment}}
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endif %}

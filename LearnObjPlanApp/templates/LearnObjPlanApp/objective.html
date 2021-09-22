@@ -1,7 +1,8 @@
 {{objective.objective}}
+{% include './assessment_or_activity.html' with assessments=objective.assessments.all %}
 {% if objective.children %}
     {% for child in objective.children.all %}
-        <ul>
+        <ul class="objective">
             <li>
                 {# This had to be an absolute path to get around a Django recursion exception #}
                 {% include 'LearnObjPlanApp/objective.html' with objective=child %}

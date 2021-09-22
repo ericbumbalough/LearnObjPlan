@@ -58,14 +58,12 @@ class Objective(models.Model):
                                       help_text=children_help,
                                       symmetrical=False,
                                       related_name='children_related')
-    assessments = models.ForeignKey(Assessment,
-                                    on_delete=models.CASCADE,
-                                    blank=True,
-                                    null=True)
-    learning_activities = models.ForeignKey(Learning_Activity,
-                                            on_delete=models.CASCADE,
-                                            blank=True,
-                                            null=True)
+    assessments = models.ManyToManyField(Assessment,
+                                         blank=True,
+                                         related_name='assessment_related')
+    learning_activities = models.ManyToManyField(Learning_Activity,
+                                                 blank=True,
+                                                 related_name='learning_activities_related')
     notes = models.TextField(blank=True)
         
     def __str__(self):

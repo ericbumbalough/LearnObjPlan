@@ -4,10 +4,10 @@
   <h1>Objectives</h1>
 
   {% if objective_list %}
-  <ul>
+  <ul class="objective"
       {% for obj in objective_list %}
         <li>
-          {% include './objective.html' with objective=obj %}
+          {% include 'LearnObjPlanApp/objective.html' with objective=obj %}
         </li>
       {% endfor %}
   </ul>
