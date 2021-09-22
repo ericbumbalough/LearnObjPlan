@@ -1,10 +1,20 @@
-{% if assessments%}
-    <div class="assessment">
-        <b>Assessments</b>
+{% comment %} 
+Inputs:
+a: list of either activities or assessments
+type: either 'activity' or 'assessment' to differtiate which it is
+{% endcomment %}
+
+{% if a %}
+    <div class='{{ type }}'>
+        <b>{{ type|capfirst }}</b>
         <ul>
-            {% for a in assessments %}
+            {% for item in a %}
                 <li>
-                    {{a.assessment}}
+                    {% if type == 'assessment' %}
+                        {{ item.assessment }}
+                    {% elif type == 'activity' %}
+                        {{ item.learning_activity }}
+                    {% endif %}
                 </li>
             {% endfor %}
         </ul>

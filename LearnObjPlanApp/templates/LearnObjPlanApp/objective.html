@@ -1,5 +1,10 @@
 {{objective.objective}}
-{% include './assessment_or_activity.html' with assessments=objective.assessments.all %}
+
+{% comment %} Same template is used for assessments and activities.
+Differentiated by the type variable. {% endcomment %}
+{% include './assessment_or_activity.html' with a=objective.assessments.all type='assessment' %}
+{% include './assessment_or_activity.html' with a=objective.learning_activities.all type='activity' %}
+
 {% if objective.children %}
     {% for child in objective.children.all %}
         <ul class="objective">

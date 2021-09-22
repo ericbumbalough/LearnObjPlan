@@ -4,7 +4,7 @@
   <h1>Objectives</h1>
 
   {% if objective_list %}
-  <ul class="objective"
+  <ul class="objective">
       {% for obj in objective_list %}
         <li>
           {% include 'LearnObjPlanApp/objective.html' with objective=obj %}
