@@ -4,7 +4,6 @@ from django.db.models.deletion import CASCADE
 from Accounts.models import CustomUser as User
 
 # TODO these will come from locale files
-
 parents_help = ('Is this requirement devirived different requirements?'
                 + ' If so, put that requirement here. If not, leave blank.'
                 + ' If you input parents, the system will automatically add '
@@ -20,6 +19,7 @@ class Course(models.Model):
     name = models.CharField(max_length=200, help_text=course_name_help)
     number = models.CharField(max_length=200, help_text=course_number_help)
     user = models.ForeignKey(User, on_delete=CASCADE)
+    slug = models.SlugField(unique=True)
 
     def __str__(self):
         return self.number
@@ -29,6 +29,7 @@ class Learning_Activity(models.Model):
     course = models.ForeignKey(Course, on_delete=CASCADE)
     user = models.ForeignKey(User, on_delete=CASCADE)
     descripton = models.TextField(blank=True)
+    slug = models.SlugField(unique=True)
         
     def __str__(self):
         return self.learning_activity
@@ -39,6 +40,7 @@ class Assessment(models.Model):
     course = models.ForeignKey(Course, on_delete=CASCADE)
     user = models.ForeignKey(User, on_delete=CASCADE)
     descripton = models.TextField(blank=True) 
+    slug = models.SlugField(unique=True)
     
     def __str__(self):
         return self.assessment
@@ -69,6 +71,7 @@ class Objective(models.Model):
                                                  blank=True,
                                                  related_name='learning_activities_related')
     notes = models.TextField(blank=True)
+    slug = models.SlugField(unique=True)
         
     def __str__(self):
         return self.objective

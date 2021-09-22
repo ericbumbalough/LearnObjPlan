@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Courses</h1>
+    {% if course_list %}
+        <ul class="course">
+            {% for course in course_list%}
+                <li>
+                    <a href="/{{course.slug}}/">
+                        {{course.number}}: {{course.name}}
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>You haven't created any courses.</p>
+    {% endif %}
+{% endblock %}
