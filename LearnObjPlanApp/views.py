@@ -10,4 +10,4 @@ class ObjectiveList(LoginRequiredMixin, generic.ListView):
     template_name = 'objective_list.html'
     
     def get_queryset(self):
-        return Objective.objects.filter(user=self.request.user)
+        return Objective.objects.filter(user=self.request.user).filter(top_level=True)

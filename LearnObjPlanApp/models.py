@@ -58,6 +58,10 @@ class Objective(models.Model):
                                       help_text=children_help,
                                       symmetrical=False,
                                       related_name='children_related')
+    # top_level is a temporary way to flag the uppermost level objectives
+    # will be replaced by the closure table or something eventually
+    # also need to update queryset in views.py
+    top_level = models.BooleanField(default=False)
     assessments = models.ManyToManyField(Assessment,
                                          blank=True,
                                          related_name='assessment_related')
