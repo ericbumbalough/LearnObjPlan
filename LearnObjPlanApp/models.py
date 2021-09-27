@@ -19,32 +19,47 @@ class Course(models.Model):
     name = models.CharField(max_length=200, help_text=course_name_help)
     number = models.CharField(max_length=200, help_text=course_number_help)
     user = models.ForeignKey(User, on_delete=CASCADE)
-    slug = models.SlugField(unique=True)
+    slug = models.SlugField()
 
     def __str__(self):
         return self.number
+
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(fields=['user', 'slug'],
+                                    name='unique_slug_course')
+        ]
 
 class Learning_Activity(models.Model):
     learning_activity = models.CharField(max_length=100)
     course = models.ForeignKey(Course, on_delete=CASCADE)
     user = models.ForeignKey(User, on_delete=CASCADE)
     descripton = models.TextField(blank=True)
-    slug = models.SlugField(unique=True)
+    slug = models.SlugField()
         
     def __str__(self):
         return self.learning_activity
-    
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(fields=['user', 'slug'],
+                                    name='unique_slug_learning_activity')
+        ]
     
 class Assessment(models.Model):
     assessment = models.CharField(max_length=100)
     course = models.ForeignKey(Course, on_delete=CASCADE)
     user = models.ForeignKey(User, on_delete=CASCADE)
     descripton = models.TextField(blank=True) 
-    slug = models.SlugField(unique=True)
+    slug = models.SlugField()
     
     def __str__(self):
         return self.assessment
-
+    
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(fields=['user', 'slug'],
+                                    name='unique_slug_assessment')
+        ]
 
 class Objective(models.Model):
     objective = models.CharField(max_length=100)
@@ -71,9 +86,13 @@ class Objective(models.Model):
                                                  blank=True,
                                                  related_name='learning_activities_related')
     notes = models.TextField(blank=True)
-    slug = models.SlugField(unique=True)
+    slug = models.SlugField()
         
     def __str__(self):
         return self.objective
     
-    
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(fields=['user', 'slug'],
+                                    name='unique_slug_objective')
+        ]

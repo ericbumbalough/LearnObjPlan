@@ -6,7 +6,7 @@
         <ul class="course">
             {% for course in course_list%}
                 <li>
-                    <a href="/{{course.slug}}/">
+                    <a href= {% url 'objective_list' course.slug%}>  
                         {{course.number}}: {{course.name}}
                     </a>
                 </li>
